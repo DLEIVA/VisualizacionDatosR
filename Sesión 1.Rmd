@@ -406,7 +406,14 @@ legend('topright',legend = TeX(paste0('$\\hat{\\beta}_0=',b0,', \\hat{\\beta}_1=
 
 ## El paquete ggplot2
 
-`ggplot2` (Wickham, 2016) es una implementación en R de la llamada gramática de los gráficos. Se puede instalar solo o con `tidyverse`. En el siguiente [enlace](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf) se encuentra una tabla con sus principales funcionalidades. En su forma básica se requieren unos datos, un sistema de coordenadas y unos elementos geométricos para representar un gráfico.
+`ggplot2` (Wickham, 2016) es una implementación en R de la llamada gramática de los gráficos. Se puede instalar solo o con `tidyverse`. La visualización de datos ocupa un lugar esencial en cualquier proyecto de Ciencia de Datos:
+
+```{r, echo=FALSE, out.width="100%",out.height="100%"}
+knitr::include_graphics("images/Model_DS_project.png")
+```
+
+
+En el siguiente [enlace](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf) se encuentra una tabla con sus principales funcionalidades. En su forma básica se requieren unos datos, un sistema de coordenadas y unos elementos geométricos para representar un gráfico.
 
 ```{r, echo=FALSE, out.width="100%",out.height="100%"}
 knitr::include_graphics("images/ggplot2.png")
