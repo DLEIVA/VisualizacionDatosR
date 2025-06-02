@@ -23,9 +23,8 @@ Este curso se ha pensado como un taller de tipo práctico en el que se introduci
 ### Programa del curso:
 
 1. Introducción (15 min.)
- - Objetivos del taller
+ - Objetivos del curso
  - Revisión técnica: RStudio y librerías instaladas
- - Presentación de algunos conjuntos de datos
 
 2. Visualización de datos con R base (1.15h)
  - Sistemas y funciones gráficas tradicionales 
@@ -35,7 +34,8 @@ Este curso se ha pensado como un taller de tipo práctico en el que se introduci
 3. Visualización de datos con ggplot2 (1.30h)
  - Gramática de los gráficos
  - Gráficos básicos con qplot
- - Gráficos avanzados con ggplot2
+ - Gráficos avanzados con ggplot
+ - Otros paquetes basados en ggplot2
 
 4. Visualización interactiva con plotly (1.30h)
  - Introducción a plotly
@@ -52,7 +52,7 @@ Me llamo David Leiva y soy profesor Agregado (Contratado Doctor) en el Departame
 
 ## Preparación previa
 
-Por favor, asegúrate que tienes al menos la versión 4.4 de R instalada &mdash; *y preferiblemente la versión 4.5* &mdash; (pues dependiendo de los paquetes que se utilicen requieren versiones actualizadas del software). Nótese que R y RStudio son dos programas distintos: no es suficiente tener actualizada la versión de RStudio pues R se va actualizando independientemente de forma periódica.
+Por favor, asegúrate que tienes al menos la versión 4.1 de R instalada &mdash; *y preferiblemente la versión 4.5* &mdash; (pues dependiendo de los paquetes que se utilicen requieren versiones actualizadas del software). Nótese que R y RStudio son dos programas distintos: no es suficiente tener actualizada la versión de RStudio pues R se va actualizando independientemente de forma periódica.
 
 Para comprobar la versión de R instalada, puedes ejecutar
 
@@ -62,7 +62,7 @@ version
 
 en R y leer en el apartado `version.string` (o las secciones `major` y `minor`).
 
-Si la versión instalada de R es < 4.4.0, necesitarás actualizar el programa previa descarga e instalación. Para descargar R ve a la página [CRAN Download](https://cran.r-project.org/) y selececciona el enlace apropiado según tu sistema operativo:
+Si la versión instalada de R es < 4.1.0, necesitarás actualizar el programa previa descarga e instalación. Para descargar R ve a la página [CRAN Download](https://cran.r-project.org/) y selececciona el enlace apropiado según tu sistema operativo:
 
 * [Windows](https://cran.r-project.org/bin/windows/)
 * [MacOS X](https://cran.r-project.org/bin/macosx/)
