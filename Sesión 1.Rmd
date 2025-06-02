@@ -444,7 +444,7 @@ PANAS$EDUCATION_LEVEL <- car::recode(as.integer(PANAS$EDUCATION_LEVEL),paste(pas
 ```
 
 
-```{r qplot,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r qplot,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 qplot(x=___,
       y=___,
       geom=c(___,___),
@@ -473,7 +473,7 @@ Realiza el siguiente gráfico con la función `qplot()`:
 knitr::include_graphics("images/qplot2.png")
 ```
 
-```{r qplot2,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r qplot2,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 qplot(x=____,
       geom=c(___),fill=I(___),
       data=___,facets=___)
@@ -500,7 +500,7 @@ Realiza el siguiente gráfico con la función `qplot()`:
 knitr::include_graphics("images/qplot3.png")
 ```
 
-```{r qplot3,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r qplot3,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 qplot(___,___,
       data=___,
       geom=c(___,___),
@@ -538,7 +538,7 @@ Realiza el siguiente gráfico con la función `ggplot()`:
 knitr::include_graphics("images/ggplot2ex1.png")
 ```
 
-```{r ggplotex1,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r ggplotex1,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 ggplot(___,aes(x=___,y=___))
 
 ```
@@ -562,7 +562,7 @@ Realiza el siguiente gráfico con la función `ggplot()`:
 knitr::include_graphics("images/ggplot2ex2.png")
 ```
 
-```{r ggplotex2,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r ggplotex2,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 ggplot(___,aes(x=___,y=___)) +
   geom_point(size=2,color=___,alpha=.2) +
   theme_classic()
@@ -590,7 +590,7 @@ Realiza el siguiente gráfico con la función `ggplot()`:
 knitr::include_graphics("images/ggplot2ex3.png")
 ```
 
-```{r ggplotex3,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r ggplotex3,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 ggplot(___,aes(x=___,y=___)) +
   geom_point(size=2,color=___,alpha=.2) +
   geom_smooth(method=___,color=___,se=FALSE) +
@@ -614,15 +614,81 @@ ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
 
 ### Ejercicio 4
 
+Para practicar la especificación de colores manualmente en ggplot2, vamos a generar un gráfico de barras agrupadas para nivel educativo y fase de detección de la enfermedad. Utilizaremos los colores "#00AFBB", "#E7B800" y "#FC4E07" y tamaño de fuente del texto 20:
+
+```{r ggplotex4,exercise=TRUE,warning=FALSE,message=FALSE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+datKendall <- read_sav("data/ExCor3.sav")
+
+datKendall$education <- as_factor(datKendall$education)
+datKendall$phase <- as_factor(datKendall$phase)
+
+df <- datKendall %>%
+  group_by(education, phase) %>%
+  summarise(counts = n()) 
+
+p <- ggplot(df, aes(x = phase, y = counts)) +
+  geom_bar(
+    aes(color = education, fill = education),
+    stat = "identity", position = position_dodge(0.8),
+    width = 0.7
+    ) +
+  scale_color_manual(values = c(___,___,___))+
+  scale_fill_manual(values = c(___,___,___)) + theme_bw()
+p+theme(axis.text.x = element_text(size = ___),
+        axis.text.y = element_text(size = ___),
+        axis.title.x = element_text(size = ___),
+        axis.title.y = element_text(size = ___),
+        legend.text=element_text(size= ___),
+        legend.title=element_text(size= ___),
+        legend.position.inside = c(.2, .8))
+
+```
+
+
+```{r ggplotex4-hint}
+# Especifica las variables y la base de datos en su apartado
+# Especifica el vector de colores HEX en las funciones scale_color_fill y scale_fill_manual
+# Especifica los tamaños de letra 20 en todos los argumentos size
+```
+
+```{r ggplotex4-solution}
+datKendall <- read_sav("data/ExCor3.sav")
+
+datKendall$education <- as_factor(datKendall$education)
+datKendall$phase <- as_factor(datKendall$phase)
+
+df <- datKendall %>%
+  group_by(education, phase) %>%
+  summarise(counts = n()) 
+
+p <- ggplot(df, aes(x = phase, y = counts)) +
+  geom_bar(
+    aes(color = education, fill = education),
+    stat = "identity", position = position_dodge(0.8),
+    width = 0.7
+    ) +
+  scale_color_manual(values = c("#00AFBB", "#E7B800", "#FC4E07"))+
+  scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07")) + theme_bw()
+p+theme(axis.text.x = element_text(size = 20),
+        axis.text.y = element_text(size = 20),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20),
+        legend.text=element_text(size= 20),
+        legend.title=element_text(size= 20),
+        legend.position.inside = c(.2, .8))
+```
+
+### Ejercicio 5
+
 `coord_XXX()` permite usar distintos sistemas de coordenadas (cartesianas, polares, mapas, transformadas...)
 
 Realiza el siguiente gráfico con la función `ggplot()`:
 
 ```{r, echo=FALSE, out.width="100%",out.height="100%"}
-knitr::include_graphics("images/ggplot2ex4.png")
+knitr::include_graphics("images/ggplot2ex5.png")
 ```
 
-```{r ggplotex4,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r ggplotex5,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 library(gridExtra)
 
 p1 <- ggplot(___,aes(x=___)) +
@@ -637,13 +703,13 @@ p2 <- ggplot(___,aes(x=___)) +
 grid.arrange(___,___,nrow=1)
 ```
 
-```{r ggplotex4-hint}
+```{r ggplotex5-hint}
 # Especifica las variables y la base de datos en su apartado
 # Especifica el color de las barras
 # Especifica los gráficos a agrupar con grid.arrange
 ```
 
-```{r ggplotex4-solution}
+```{r ggplotex5-solution}
 library(gridExtra)
 
 p1 <- ggplot(PANAS,aes(x=EDUCATION_LEVEL)) +
@@ -659,17 +725,17 @@ grid.arrange(p1,p2,nrow=1)
 
 ```
 
-### Ejercicio 5
+### Ejercicio 6
 
 Podemos llevar a cabo gráficos con paneles multivariantes gracias a las funciones `facet_grid()` y `facet_wrap()`
 
 Realiza el siguiente gráfico con la función `ggplot()`:
 
 ```{r, echo=FALSE, out.width="100%",out.height="100%"}
-knitr::include_graphics("images/ggplot2ex5.png")
+knitr::include_graphics("images/ggplot2ex6.png")
 ```
 
-```{r ggplotex5,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r ggplotex6,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 ggplot(___,aes(x=___,y=___)) +
   geom_point(size=2,color=___,alpha=.2) +
   geom_smooth(method='lm',color=___) +
@@ -677,13 +743,13 @@ ggplot(___,aes(x=___,y=___)) +
   facet_grid(___~___)
 ```
 
-```{r ggplotex5-hint}
+```{r ggplotex6-hint}
 # Especifica las variables y la base de datos en su apartado
 # Especifica el color de los puntos y el ajuste lineal
 # facet_grid utiliza una especie de objeto fórmula
 ```
 
-```{r ggplotex5-solution}
+```{r ggplotex6-solution}
 ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
   geom_point(size=2,color='blue',alpha=.2) +
   geom_smooth(method='lm',color='red') +
@@ -692,17 +758,17 @@ ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
 
 ```
 
-### Ejercicio 6
+### Ejercicio 7
 
 Se pueden anotar los gráficos con texto, formas geométricas y otros elementos.
 
 Realiza el siguiente gráfico con la función `ggplot()`:
 
 ```{r, echo=FALSE, out.width="100%",out.height="100%"}
-knitr::include_graphics("images/ggplot2ex6.png")
+knitr::include_graphics("images/ggplot2ex7.png")
 ```
 
-```{r ggplotex6,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+'}
+```{r ggplotex7,exercise=TRUE,exercise.setup='exqplotsetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
 ggplot(___,aes(x=___,y=___)) +
   geom_point(size=2,color=___,alpha=.2) +
   geom_smooth(method='lm',color=___,se=FALSE) +
@@ -714,13 +780,13 @@ ggplot(___,aes(x=___,y=___)) +
                   arrow = arrow(length = unit(0.1, "cm")))
 ```
 
-```{r ggplotex6-hint}
+```{r ggplotex7-hint}
 # Especifica las variables y la base de datos en su apartado
 # Especifica el color de los puntos, del ajuste lineal y de la fórmula
 # facet_grid utiliza una especie de objeto fórmula
 ```
 
-```{r ggplotex6-solution}
+```{r ggplotex7-solution}
 ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
   geom_point(size=2,color='blue',alpha=.2) +
   geom_smooth(method='lm',color='red',se=FALSE) +
@@ -732,6 +798,34 @@ ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
                   arrow = arrow(length = unit(0.1, "cm")))
 
 ```
+
+### Ejercicio 8
+
+Ya hemos visto algunos ejemplos de temas para los gráficos, un ejemplo más elaborado en el que se utiliza el paquete [ggthemes](https://r-graph-gallery.com/package/ggthemes.html) es el siguiente (extraído de Irizarry, 2019):
+
+```{r athemeex, exercise=TRUE, warning=FALSE, message=FALSE, fig.width=7, fig.height=5}
+library(tidyverse)
+library(ggthemes)
+library(ggrepel)
+library(dslabs)
+
+r <- murders %>%
+    summarize(rate = sum(total) / sum(population) * 10^6) %>%
+    pull(rate)
+    
+murders %>% ggplot(aes(population/10^6, total, label = abb)) +
+    geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") +
+    geom_point(aes(col=region), size = 3) +
+    geom_text_repel() +
+    scale_x_log10() +
+    scale_y_log10() +
+    xlab("Populations in millions (log scale)") +
+    ylab("Total number of murders (log scale)") +
+    ggtitle("US Gun Murders in 2010") +
+    scale_color_discrete(name = "Region") +
+    theme_economist() 
+```
+
 
 
 ## Otros paquetes
