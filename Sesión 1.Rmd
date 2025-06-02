@@ -357,13 +357,13 @@ with(ToothGrowth,
 
 ## El paquete ggplot2
 
-`ggplot2` (Wickham, 2016) es una implementación en R de la llamada gramática de gráficos. Se puede instalar solo o con `tidyverse`. En el siguiente [enlace](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf) se encuentra una tabla con sus principales funcionalidades. En su forma básica se requieren unos datos, un sistema de coordenadas y unos elementos geométricos para representar un gráfico.
+`ggplot2` (Wickham, 2016) es una implementación en R de la llamada gramática de los gráficos. Se puede instalar solo o con `tidyverse`. En el siguiente [enlace](https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf) se encuentra una tabla con sus principales funcionalidades. En su forma básica se requieren unos datos, un sistema de coordenadas y unos elementos geométricos para representar un gráfico.
 
 ```{r, echo=FALSE, out.width="100%",out.height="100%"}
 knitr::include_graphics("images/ggplot2.png")
 ```
 
-Para representar los valores de las variables, visualizar los datos mediante elementos gráficos se usan los **aesthetics**: color, tamaño, coordenadas (x,y). Se trata de crear un lienzo vacío en el que disponer todos los elementos que posibiliten una buena visualización de los datos.
+Para representar los valores de las variables y visualizar los datos mediante elementos gráficos se usan los **aesthetics**: color, tamaño, coordenadas (x,y). Se trata de crear un lienzo vacío en el que disponer todos los elementos que posibiliten una buena visualización de los datos.
 
 ```{r, echo=FALSE, out.width="100%",out.height="100%"}
 knitr::include_graphics("images/ggplot2b.png")
@@ -443,7 +443,7 @@ qplot(x=BDI_TOTAL_PRE,
 
 ```
 
-### Ejercicio 2
+### Ejercicio 3
 
 Realiza el siguiente gráfico con la función `qplot()`:
 
