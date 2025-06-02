@@ -205,6 +205,20 @@ plot(y,type='p', pch=1); plot(y,type='p', pch=2)
 plot(y,type='p', pch=3); plot(y,type='p', pch=8)
 ```
 
+Sobre la combinación de gráficos en una misma ventana, también se puede utilizar la función _layout_:
+
+```{r layoutex, exercise=TRUE, warning=FALSE, message=FALSE, fig.width=8, fig.height=9,exercise.setup='exqplotsetup'}
+layout(matrix(c(1,2)),heights=c(1.5,1))
+layout.show(2)
+```
+
+```{r layoutex2, exercise=TRUE, warning=FALSE, message=FALSE, fig.width=8, fig.height=9}
+layout(matrix(c(1,2)),heights=c(1.5,1))
+x<-rnorm(10)     
+hist(x)
+plot(x,type='l')
+```
+
 ### Ejercicio 7
 
 * R incorpora una cantidad ingente de paletas tanto en la versión básica como en paquetes adicionales (por ejemplo, https://github.com/johnmackintosh/metallicaRt). Las paletas suelene aceptar uno o varios tipos de argumentos de entrada para especificar el color: cadenas de caracteres, valores numéricos, código hexadecimal...
@@ -334,8 +348,8 @@ plot(x, y, ann=FALSE, axes=FALSE, col="grey", pch=16) # Parámetro pch=16 repres
 points(3, 3, col="grey", pch=16) # Equivalente pero es una función de bajo nivel --> Requiere plot() previamente #
 box(col="grey")
 text(x,y,c('abajo','izqda','arriba','drcha'),pos=1:4) # Parámetro pos=1:4 #
-     text(3,3,'overlay') # Posición superpuesta por defecto #
-     title('text()')
+text(3,3,'overlay') # Posición superpuesta por defecto #
+title('text()')
 ```
 
 ### Ejercicio 11
@@ -352,6 +366,41 @@ with(ToothGrowth,
          unlist(split(len, supp)),
          cex=0.5, pch=16)
 })  
+```
+
+### Ejercicio 12
+
+Podemos anotar los gráficos con símbolos, fórmulas y expresiones matemáticas. 
+
+```{r anotex9, exercise=TRUE,fig.height=9,fig.width=9,message=FALSE,warning=FALSE}
+set.seed(123)
+x <- rnorm(100)
+y <- rnorm(100)
+mylm <- lm(y~x) # Regresión lineal 
+plot(x,y) # Representar diagrama de puntos
+abline(mylm,col='red') # Dibujar línea MCO
+b0 <- round(mylm$coefficients[1],2) # Intercepto
+b1 <- round(mylm$coefficients[2],2) # Pendiente
+title(main=expression(paste('X,Y~N(',mu,',',sigma,')')))
+legend('topright',legend = substitute(
+    paste(hat(beta)[0], "=",beta0, ", ", hat(beta)[1], "=",beta1),
+    list(beta0 = b0, beta1 = b1)),bty='n')
+```
+
+Equivalentemente mediante el paquete `latex2exp`:
+
+```{r anotex10, exercise=TRUE,fig.height=9,fig.width=9,message=FALSE,warning=FALSE}
+library(latex2exp)
+set.seed(123)
+x <- rnorm(100)
+y <- rnorm(100)
+mylm <- lm(y~x) # Regresión lineal 
+plot(x,y) # Representar diagrama de puntos
+abline(mylm,col='red') # Dibujar línea MCO
+b0 <- round(mylm$coefficients[1],2) # Intercepto
+b1 <- round(mylm$coefficients[2],2) # Pendiente
+title(main=TeX('$X,Y\\sim N(\\mu,\\sigma)$'))
+legend('topright',legend = TeX(paste0('$\\hat{\\beta}_0=',b0,', \\hat{\\beta}_1=',b1,'$')),bty='n')
 ```
 
 
@@ -659,7 +708,7 @@ ggplot(___,aes(x=___,y=___)) +
   geom_smooth(method='lm',color=___,se=FALSE) +
   theme_classic() +
   annotate(geom='text',x=5,y=50,
-  label="hat(y)==beta[0]+beta[1]~x",col=___,
+  label="hat(y)==hat(beta)[0]+hat(beta)[1]~x",col=___,
   parse=TRUE,size=3) +
   geom_segment(aes(x = 7, y = 49, xend = 20, yend = 37),
                   arrow = arrow(length = unit(0.1, "cm")))
@@ -677,7 +726,7 @@ ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
   geom_smooth(method='lm',color='red',se=FALSE) +
   theme_classic() +
   annotate(geom='text',x=5,y=50,
-  label="hat(y)==beta[0]+beta[1]~x",col='red',
+  label="hat(y)==hat(beta)[0]+hat(beta)[1]~x",col='red',
   parse=TRUE,size=3) +
   geom_segment(aes(x = 7, y = 49, xend = 20, yend = 37),
                   arrow = arrow(length = unit(0.1, "cm")))
@@ -685,10 +734,11 @@ ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
 ```
 
 
-
 ## Otros paquetes
 
 ### patchwork
+
+El paquete `patchwork` permite la combinación de distintos objetos creados con ggplot2 en un mismo gráfico. Similar a otras funciones como `gridExtra::grid.arrange()` y `cowplot::plot_grid()`, permite la generación de visualizaciones complejas con una sintaxis bastante intuitiva.
 
 ```{r patchworkex, exercise=TRUE, warning=FALSE, message=FALSE, fig.width=9, fig.height=9,exercise.setup='exqplotsetup'}
 library(patchwork)
@@ -702,28 +752,46 @@ p2 <- ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE)) +
   geom_smooth(method='lm',color='red',se=FALSE) +
   theme_classic()
 
-p3 <- qplot(x=PHQ9Sumatorio_pre,
-      y=BDI_TOTAL_PRE,
-      geom=c('point','smooth'),
-      color=GENDER,data=PANAS)
+p3 <- ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE,color=GENDER)) +
+      geom_point() +
+      geom_smooth()
 
 (p1 + p2) / p3
 ```
 
-### plotly
+En este ejemplo, comprobamos como incluir una única leyenda para la combinación de varios objetos creados con ggplot2:
 
-`plotly` es un paquete basado en la sintaxis de `ggplot2` para la creación de gráficos interactivos funcionales tanto a nivel local (RStudio) como en Web. Se puede consultar el siguiente [enlace](https://ggvis.rstudio.com/).
+```{r patchworkex2, exercise=TRUE, warning=FALSE, message=FALSE, fig.width=9, fig.height=9,exercise.setup='exqplotsetup'}
+library(patchwork)
 
-```{r plotlyex, exercise=TRUE, warning=FALSE, message=FALSE, fig.show='animate', fig.width=9, fig.height=9,exercise.setup='exqplotsetup'}
-library(plotly)
+p1 <- ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BDI_TOTAL_PRE,color=GENDER)) +
+      geom_point() +
+      geom_smooth()
 
-fig <- plot_ly(data = PANAS, x = ~PHQ9Sumatorio_pre, y = ~BDI_TOTAL_PRE,
-               marker = list(size = 10,
-                             color = 'rgba(255, 182, 193, .9)',
-                             line = list(color = 'rgba(152, 0, 0, .8)',
-                                         width = 2)))
+p2 <- ggplot(PANAS,aes(x=PHQ9Sumatorio_pre,y=BAI_TOTAL_PRE,color=GENDER)) +
+      geom_point() +
+      geom_smooth()
 
-fig
+(p1 + p2)  + 
+  plot_layout(guides = "collect") & 
+  theme(legend.position = "bottom")
+```
+
+### ggvis
+
+`ggvis` es un paquete basado en la sintaxis de `ggplot2` para la creación de gráficos interactivos funcionales tanto a nivel local (RStudio) como en Web. Se puede consultar el siguiente [enlace](https://ggvis.rstudio.com/).
+
+```{r plotlyex, exercise=TRUE, warning=FALSE, message=FALSE, fig.width=9, fig.height=9,exercise.setup='exqplotsetup'}
+library(ggvis)
+
+PANAS %>%
+    filter(!is.na(PHQ9Sumatorio_pre), !is.na(BDI_TOTAL_PRE)) %>%
+    ggvis(~PHQ9Sumatorio_pre, ~BDI_TOTAL_PRE,
+          size := input_slider(10, 100),
+          opacity := input_slider(0, 1)) %>%
+    layer_points(fill := "rgba(255,182,193,1)",
+                 stroke := "rgba(152,0,0,.8)",
+                 strokeWidth := 2)
 ```
 
 
