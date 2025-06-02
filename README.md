@@ -31,16 +31,16 @@ Este curso se ha pensado como un taller de tipo práctico en el que se introduci
  - Parámetros gráficos
  - Gráficos avanzados con R base
 
-3. Visualización de datos con ggplot2 (1.15h)
+3. Visualización de datos con ggplot2 (1.30h)
  - Gramática de los gráficos
  - Gráficos básicos con qplot
  - Gráficos avanzados con ggplot2
 
-4. Visualización interactiva con plotly (1.15h)
+4. Visualización interactiva con plotly (1.30h)
  - Introducción a plotly
  - Gráficos interactivos con el paquete plotly
 
-4. Visualización interactiva con flexdashboard (1.30h)
+5. Visualización interactiva con flexdashboard (1.30h)
  - Dashboards: características y utilidad
  - Introducción a flexdashboard
  - Dashboards básicos mediante flexdashboard
