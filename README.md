@@ -75,7 +75,9 @@ A lo largo de las sesiones vamos a utilizar diversos paquetes de R que necesitar
 update.packages(ask = FALSE, checkBuilt = TRUE)
 
 # Algunos paquetes a instalar
-pkgs <- c("tidyverse", "rmarkdown", "haven", "usethis", "learnr", "car", "magick","gridExtra", "dslabs", "ggthemes", "ggrepel", "latex2exp", "patchwork", "gganimate", "ggvis", "gapminder", "plotly", "knitr", "lorem", "flexdashboard")
+pkgs <- c("tidyverse", "rmarkdown", "haven", "usethis", "learnr", "car", "magick","gridExtra",
+"dslabs", "ggthemes", "ggrepel", "latex2exp", "patchwork", "gganimate", "ggvis",
+"gapminder", "plotly", "knitr", "lorem", "flexdashboard")
 
 # Instalar esos paquetes
 install.packages(pkgs, Ncpus = 4) # especifica Ncpus según nº CPUs disponibles en tu ordenador
