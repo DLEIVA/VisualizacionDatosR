@@ -1,4 +1,5 @@
 # VisualizacionDatosR
+
 Materiales para el curso de Visualización de Datos con R
 
 ## Asociación Española de Metodología de las Ciencias del Comportamiento (AEMCCO)
@@ -74,7 +75,7 @@ A lo largo de las sesiones vamos a utilizar diversos paquetes de R que necesitar
 update.packages(ask = FALSE, checkBuilt = TRUE)
 
 # Algunos paquetes a instalar
-pkgs <- c("tidyverse", "readxl", "haven", "usethis", "learnr", "kableExtra", "magick","gridExtra", "dslabs", "patchwork", "plotly", "gganimate", "car", "effects", "gapminder", "tidymodels", "modelr", "broom", "purrr", "tinytex", "knitr","xtable", "lorem"," flexdashboard")
+pkgs <- c("tidyverse", "rmarkdown", "haven", "usethis", "learnr", "car", "magick","gridExtra", "dslabs", "latex2exp", "patchwork", "gganimate", "ggvis", "gapminder", "plotly", "knitr", "lorem", "flexdashboard")
 
 # Instalar esos paquetes
 install.packages(pkgs, Ncpus = 4) # especifica Ncpus según nº CPUs disponibles en tu ordenador
