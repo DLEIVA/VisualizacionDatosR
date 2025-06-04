@@ -429,7 +429,8 @@ fig_x</code></pre>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
 <ol start="5" style="list-style-type: decimal">
-<li></li>
+<li>Combinamos los 3 gráficos: el diagrama dispersión en la zona central
+y los histogramas en los márgenes.</li>
 </ol>
 <div class="tutorial-exercise" data-label="plotlyex6d"
 data-completion="1" data-diagnostics="1" data-startover="1"
@@ -634,51 +635,130 @@ ggplotly(p)</code></pre>
 </div>
 </div>
 </div>
-<div id="section-visualización-de-datos-dinámica-con-flexdashboard"
+<div
+id="section-visualización-de-datos-dinámica-con-flexdashboard-y-shiny"
 class="section level2">
-<h2>Visualización de datos dinámica con FlexDashboard</h2>
-<p>DFAAFD</p>
+<h2>Visualización de datos dinámica con FlexDashboard y Shiny</h2>
 <div id="section-qué-es-un-dashboard" class="section level3">
 <h3>¿QUÉ ES UN DASHBOARD?</h3>
-<p>FAFSA</p>
+<p>Un dashboard o cuadro de mandos es una disposición agrupada de
+gráficos, cajas de valores, indicadores de rendimiento y otros elementos
+que permiten la rápida visualización de datos para generar conocimiento.
+Son muy utilizados en los ámbitos industriales y de negocios pues
+posibilitan una fácil interpretación de la información en relación a los
+objetivos de las organizaciones.</p>
 </div>
-<div id="section-utilidades-de-un-dashboard" class="section level3">
-<h3>UTILIDADES DE UN DASHBOARD</h3>
-<p>DFAASF</p>
-<p>
+<div id="section-características-de-un-dashboard"
+class="section level3">
+<h3>CARACTERÍSTICAS DE UN DASHBOARD</h3>
+<p>Algunas características que debe tener un dashboard:</p>
+<ul>
+<li>Contener información relevante para los objetivos marcados.</li>
+<li>Es eminentemente visual.</li>
+<li>Está orientado a la priorización de acciones.</li>
+<li>Es dinámico, actualizándose en tiempo real.</li>
+<li>Ventajas de su utilización:
+<ul>
+<li>No requiere grandes conocimientos por parte de los usuarios.</li>
+<li>Permite añadir múltiples fuentes de información e indicadores.</li>
+<li>Posibilita el uso de múltiples usuarios.</li>
+<li>Son más eficientes que los informes tradicionales.</li>
+</ul></li>
+</ul>
+</div>
+<div id="section-diseño-de-un-dashboard" class="section level3">
+<h3>DISEÑO DE UN DASHBOARD</h3>
+<p>Al diseñar un dashboard deben tomarse una serie de decisiones, por
+ejemplo:</p>
+<ul>
+<li>Problema a solventar</li>
+<li>Objetivos priorizados.</li>
+<li>Indicadores de consecución de objetivos.</li>
+<li>Información a recoger/analizar.</li>
+<li>Visualizaciones más adecuadas.</li>
+<li>Elementos de interactividad.</li>
+</ul>
+</div>
+<div id="section-el-paquete-flexdashboard" class="section level3">
+<h3>EL PAQUETE FLEXDASHBOARD</h3>
+<p><a
+href="https://pkgs.rstudio.com/flexdashboard/"><code>flexdashboard</code></a>
+permite generar cuadros de mandos en RMarkdown.</p>
+<p><img src="images/FlexDB1.png" width="80%" height="80%" /></p>
+<p>Podemos generar un nuevo dashboard mediante
+<code>File &gt; New File &gt; R Markdown</code>. Marcamos la opción
+<code>From Template</code>. Entre las plantillas, tenemos la opción
+<code>Flex Dashboard</code>. La plantilla creada presentará dos columnas
+y tres cajas reservadas a gráficos u otros componentes.</p>
+<p><img src="images/FlexDB2.png" width="80%" height="80%" /></p>
+<p>La cabecera del documento Rmd nos permite configurar parámetros
+globales del dashboard. Su funcionamiento es como cualquier otra
+cabecera <em>YAML</em> de metadatos.</p>
+<p><img src="images/FlexDB3.png" width="90%" height="90%" /></p>
+<p>Por defecto se da una orientación por columnas:</p>
+<p><img src="images/FlexDB4.png" width="80%" height="80%" /><img src="images/FlexDB2.png" width="80%" height="80%" /></p>
+<p>También se puede dar una orientación por filas:</p>
+<p><img src="images/FlexDB5.png" width="80%" height="80%" /><img src="images/FlexDB6.png" width="80%" height="80%" /></p>
+<p>Podemos agrupar elementos en distintas páginas:</p>
+<p><img src="images/FlexDB7.png" width="80%" height="80%" /><img src="images/FlexDB8.png" width="80%" height="80%" /></p>
+<p>Podemos añadir componentes como cajas de valores:</p>
+<p><img src="images/FlexDB9.png" width="80%" height="80%" /><img src="images/FlexDB10.png" width="80%" height="80%" /></p>
+<p>También se pueden añadir indicadores métricos (gauges):</p>
+<p><img src="images/FlexDB11.png" width="80%" height="80%" /><img src="images/FlexDB12.png" width="80%" height="80%" /></p>
+<p>flexdashboard permite añadir cajas con texto para desarrollar un
+<em>storyboard</em>:</p>
+<p><img src="images/FlexDB13.png" width="80%" height="80%" /><img src="images/FlexDB14.png" width="80%" height="80%" /></p>
+<p>Veremos como añadir otros componentes en nuestros dashboards,
+utilizando otros paquetes de R.</p>
+</div>
+<div id="section-ejercicio-1-1" class="section level3">
+<h3>EJERCICIO 1</h3>
+</div>
+<div id="section-ejercicio-2-1" class="section level3">
+<h3>EJERCICIO 2</h3>
+</div>
+<div id="section-el-paquete-shiny" class="section level3">
+<h3>EL PAQUETE SHINY</h3>
+<p>Shiny () permite crear aplicaciones web de forma fácil en RStudio. Se
+instala como cualquier otro paquete de R:
+install.packages(“flexdashboard”) Contiene ejemplos que pueden ser
+inspeccionados mediante la instrucción: runExample(“NOMBRE EJEMPLO”)
+Toda la aplicación estará contenida en un único archivo (app.R) con tres
+componentes: Una interfaz de usuario (UI) Una función servidor (server)
+Una llamada a la función shinyApp() 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::register_http_handlers(session, metadata = NULL)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::prepare_tutorial_state(session)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::i18n_observe_tutorial_language(input, session)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 session$onSessionEnded(function() {
         learnr:::event_trigger(session, "session_stop")
       })
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex1-code-editor`)), session)
 output$`tutorial-exercise-plotlyex1-output` <- renderUI({
   `tutorial-exercise-plotlyex1-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex1", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -717,15 +797,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex1", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex2-code-editor`)), session)
 output$`tutorial-exercise-plotlyex2-output` <- renderUI({
   `tutorial-exercise-plotlyex2-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex2", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -770,15 +850,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex2", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex3-code-editor`)), session)
 output$`tutorial-exercise-plotlyex3-output` <- renderUI({
   `tutorial-exercise-plotlyex3-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex3", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -817,15 +897,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex3", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex4-code-editor`)), session)
 output$`tutorial-exercise-plotlyex4-output` <- renderUI({
   `tutorial-exercise-plotlyex4-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex4", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -877,15 +957,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex4", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex5-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex5-code-editor`)), session)
 output$`tutorial-exercise-plotlyex5-output` <- renderUI({
   `tutorial-exercise-plotlyex5-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex5", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -926,15 +1006,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex5", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex6-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex6-code-editor`)), session)
 output$`tutorial-exercise-plotlyex6-output` <- renderUI({
   `tutorial-exercise-plotlyex6-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex6", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -973,15 +1053,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex6", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex6b-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex6b-code-editor`)), session)
 output$`tutorial-exercise-plotlyex6b-output` <- renderUI({
   `tutorial-exercise-plotlyex6b-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex6b", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1026,15 +1106,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex6b", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex6c-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex6c-code-editor`)), session)
 output$`tutorial-exercise-plotlyex6c-output` <- renderUI({
   `tutorial-exercise-plotlyex6c-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex6c", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1083,15 +1163,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex6c", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex6d-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex6d-code-editor`)), session)
 output$`tutorial-exercise-plotlyex6d-output` <- renderUI({
   `tutorial-exercise-plotlyex6d-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex6d", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1142,15 +1222,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex6d", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex7-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex7-code-editor`)), session)
 output$`tutorial-exercise-plotlyex7-output` <- renderUI({
   `tutorial-exercise-plotlyex7-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex7", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1187,15 +1267,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex7", global_setup =
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex7b-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex7b-code-editor`)), session)
 output$`tutorial-exercise-plotlyex7b-output` <- renderUI({
   `tutorial-exercise-plotlyex7b-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex7b", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1236,15 +1316,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex7b", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex7c-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex7c-code-editor`)), session)
 output$`tutorial-exercise-plotlyex7c-output` <- renderUI({
   `tutorial-exercise-plotlyex7c-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex7c", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1290,15 +1370,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex7c", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex7d-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex7d-code-editor`)), session)
 output$`tutorial-exercise-plotlyex7d-output` <- renderUI({
   `tutorial-exercise-plotlyex7d-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex7d", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1351,15 +1431,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex7d", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex7e-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex7e-code-editor`)), session)
 output$`tutorial-exercise-plotlyex7e-output` <- renderUI({
   `tutorial-exercise-plotlyex7e-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex7e", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1413,15 +1493,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex7e", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex7f-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex7f-code-editor`)), session)
 output$`tutorial-exercise-plotlyex7f-output` <- renderUI({
   `tutorial-exercise-plotlyex7f-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex7f", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
@@ -1484,15 +1564,15 @@ learnr:::store_exercise_cache(structure(list(label = "plotlyex7f", global_setup 
     engine = "r", version = "4"), class = c("r", "tutorial_exercise"
 )))
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 `tutorial-exercise-plotlyex8-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plotlyex8-code-editor`)), session)
 output$`tutorial-exercise-plotlyex8-output` <- renderUI({
   `tutorial-exercise-plotlyex8-result`()
 })
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "plotlyex8", global_setup = structure(c("library(learnr)", 
 "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(label = "setup", 
