@@ -1,0 +1,92 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+    social: menu
+    source_code: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+# these computing functions are only toy examples
+computeEnt = function(...) return(85)
+computeCom = function(...) return(67)
+computeEnv = function(...) return(50)
+```
+
+Página 1
+=======================================================================
+
+Row {dat-width=350}
+-----------------------------------------------------------------------
+
+
+### Entradas por día
+
+```{r}
+entradas = computeEnt()
+valueBox(entradas, icon = "fa-pencil")
+```
+
+### Comentarios por día
+
+```{r}
+comentarios = computeCom()
+valueBox(comentarios, icon = "fa-comments")
+```
+
+### Envíos por día
+
+```{r}
+envios = computeEnv()
+valueBox(
+  envios, icon = "fa-envelope",
+  color = ifelse(envios > 10, "success", "primary")
+)
+```
+
+### **Promedio del curso**
+
+```{r}
+gauge(8.2,
+      min = 0,
+      max = 10,
+      gaugeSectors(success = c(7, 10),
+                   warning = c(5, 7),
+                   danger = c(0, 5),
+                   colors = c("green", "yellow", "red")))
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
+### **Sobre el estudio**
+
+**`r lorem::ipsum()`**
+
+Página 2
+========================================================================
+

@@ -1,0 +1,132 @@
+---
+title: "Dashboard Datos Movilidad Google"
+author: "D. Leiva"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    social: menu
+    source_code: embed
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(maps)
+library(DT)
+library(lorem)
+```
+
+```{r message=FALSE}
+datos <- read_csv('world_mobility_with_covid_infection_count.csv')
+datos$DATE_VAL <- lubridate::as_date(datos$DATE_VAL,format='%d-%m-%y')
+
+Vars <- paste0(c('RETAIL_AND_RECREATION','GROCERY_AND_PHARMACY','PARKS','TRANSIT_STATIONS','WORKPLACES','RESIDENTIAL'),'_PCT')
+```
+
+Gráficos {data-icon="fa-signal"}
+=======================================================================
+
+Column {.sidebar data-height=150}
+-----------------------------------------------------------------------
+
+```{r}
+
+selectInput("tipo_mov",label='Tipo Movimiento', choices = c('TODOS',Vars),selected='TODOS',width='200px')
+selectInput("pais_sel",label='Selecciona un país', choices = c('TODOS',unique(datos$COUNTRY_REGION)),selected='TODOS',width='200px')
+```
+
+
+Column {data-width=550}
+-----------------------------------------------------------------------
+
+### Movimientos Global para `r reactive(input$tipo_mov)`
+
+```{r}
+
+renderPlot({
+  datos.m <- datos %>% 
+  group_by(DATE_VAL) %>% 
+  summarise(across(Vars, mean))
+  df <- datos.m %>%
+  select(DATE_VAL, RETAIL_AND_RECREATION_PCT:RESIDENTIAL_PCT) %>%
+  pivot_longer(names_to = "variable", values_to = "Porcentaje", -DATE_VAL) %>% 
+  filter(str_detect(variable,if_else(input$tipo_mov=="TODOS",".*.",input$tipo_mov)))
+  ggplot(df,aes(x = DATE_VAL, y = Porcentaje)) + 
+    geom_line(aes(color = variable, linetype = variable)) +
+    theme(legend.position='bottom',legend.text=element_text(size=7)) +
+    labs(color=NULL,linetype=NULL) + xlab(NULL) + ylab(NULL)
+})
+
+```
+
+Column {data-width=450}
+-----------------------------------------------------------------------
+
+### Movimientos `r reactive(input$pais_sel)`
+
+```{r fig.width = 16,fig.height=10}
+renderPlot({
+  pais <- datos %>% filter(str_detect(COUNTRY_REGION,if_else(input$pais_sel=="TODOS",".*.",input$pais_sel)))
+  
+  datos.m <- pais %>% 
+    group_by(DATE_VAL) %>% 
+    summarise(across(Vars, mean))
+  
+  df <- datos.m %>%
+    select(DATE_VAL, RETAIL_AND_RECREATION_PCT:RESIDENTIAL_PCT) %>%
+    gather(key = "variable", value = "Porcentaje", -DATE_VAL)
+  
+  ggplot(df, aes(x = DATE_VAL, y = Porcentaje)) + 
+    geom_line(aes(color = variable, linetype = variable),lwd=1.) +
+    #theme_minimal() +
+    theme(legend.position='right',legend.text=element_text(size=8),axis.text.x = element_text(size=12)) +
+    labs(color=NULL,linetype=NULL) + xlab(NULL) + ylab(NULL)  
+  })
+
+```
+
+### Movimientos totales por país en `r reactive(input$tipo_mov)`
+
+```{r message=FALSE,fig.width = 16,fig.height=10}
+mapa_m <- map_data("world")
+mapa_m <- subset(mapa_m, region != "Antarctica")
+
+renderPlot({
+  datos.m <- datos %>% group_by(COUNTRY_REGION) %>% select(all_of(Vars)) %>% summarise_all(vars=Vars,mean)
+  datos.m$Medias <- if(input$tipo_mov=="TODOS"){rowMeans(datos.m[Vars])} else{rowMeans(datos.m[input$tipo_mov])}
+  ggplot(datos.m) +
+    geom_map(
+      dat = mapa_m, map = mapa_m, aes(map_id = region),
+      fill = "white", color = "#7f7f7f", size = 0.25
+  ) +
+    geom_map(map = mapa_m, aes(map_id = COUNTRY_REGION, fill = Medias), size = 0.25) +
+    scale_fill_gradient(low = "#fff7bc", high = "#cc4c02", name = "") +
+    expand_limits(x = mapa_m$long, y = mapa_m$lat) +
+    theme(legend.position='right',legend.text=element_text(size=18)) +
+    xlab(NULL) + ylab(NULL)
+})
+
+```
+
+
+Tablas {data-icon="fa-table"}
+========================================================================
+
+
+```{r}
+datatable(datos,
+          caption = 'Datos de movilidad COVID-19',
+          rownames = T,
+          filter = 'top',
+          options = list(pageLength = 25))
+```
+
+Acerca del estudio {data-icon="fa-globe"}
+===========================================
+
+Inputs {.sidebar data-height=400}
+-----------------------------------------------------------------------
+
+*`r ipsum(1)`*
