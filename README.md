@@ -41,10 +41,10 @@ Este curso se ha pensado como un taller de tipo práctico en el que se introduci
  - Introducción a plotly
  - Gráficos interactivos con el paquete plotly
 
-5. Visualización interactiva con flexdashboard (1.30h)
+5. Visualización dinámica con flexdashboard y Shiny (1.30h)
  - Dashboards: características y utilidad
- - Introducción a flexdashboard
- - Dashboards básicos mediante flexdashboard
+ - Introducción a flexdashboard y Shiny
+ - Visualizaciones dinámicas básicas mediante flexdashboard y Shiny
 
 ## Sobre el instructor
 
@@ -77,7 +77,7 @@ update.packages(ask = FALSE, checkBuilt = TRUE)
 # Algunos paquetes a instalar
 pkgs <- c("tidyverse", "rmarkdown", "haven", "usethis", "learnr", "car", "magick","gridExtra",
 "dslabs", "ggthemes", "ggrepel", "latex2exp", "patchwork", "gganimate", "ggvis",
-"gapminder", "plotly", "knitr", "lorem", "flexdashboard")
+"gapminder", "plotly", "knitr", "lorem", "flexdashboard", "shiny")
 
 # Instalar esos paquetes
 install.packages(pkgs, Ncpus = 4) # especifica Ncpus según nº CPUs disponibles en tu ordenador
