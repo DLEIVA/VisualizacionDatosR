@@ -22,26 +22,26 @@ Este curso se ha pensado como un taller de tipo práctico en el que se introduci
 
 ### Programa del curso:
 
-1. Introducción (15 min.)
+0. Introducción (PREVIO)
  - Objetivos del curso
  - Revisión técnica: RStudio y librerías instaladas
 
-2. Visualización de datos con R base (1.15h)
+1. Visualización de datos con R base (1.30h)
  - Sistemas y funciones gráficas tradicionales 
  - Parámetros gráficos
  - Gráficos avanzados con R base
 
-3. Visualización de datos con ggplot2 (1.30h)
+2. Visualización de datos con ggplot2 (1.30h)
  - Gramática de los gráficos
  - Gráficos básicos con qplot
  - Gráficos avanzados con ggplot
  - Otros paquetes basados en ggplot2
 
-4. Visualización interactiva con plotly (1.30h)
+3. Visualización interactiva con plotly (1.30h)
  - Introducción a plotly
  - Gráficos interactivos con el paquete plotly
 
-5. Visualización dinámica con flexdashboard y Shiny (1.30h)
+4. Visualización dinámica con flexdashboard y Shiny (1.30h)
  - Dashboards: características y utilidad
  - Introducción a flexdashboard y Shiny
  - Visualizaciones dinámicas básicas mediante flexdashboard y Shiny
@@ -77,7 +77,7 @@ update.packages(ask = FALSE, checkBuilt = TRUE)
 # Algunos paquetes a instalar
 pkgs <- c("tidyverse", "rmarkdown", "haven", "usethis", "learnr", "car", "magick","gridExtra",
 "dslabs", "ggthemes", "ggrepel", "latex2exp", "patchwork", "gganimate", "ggvis",
-"gapminder", "plotly", "knitr", "lorem", "flexdashboard", "shiny")
+"gapminder", "plotly", "knitr", "lorem", "flexdashboard", "shiny", "maps", "DT")
 
 # Instalar esos paquetes
 install.packages(pkgs, Ncpus = 4) # especifica Ncpus según nº CPUs disponibles en tu ordenador
