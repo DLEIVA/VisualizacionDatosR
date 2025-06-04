@@ -530,7 +530,7 @@ Al diseñar un dashboard deben tomarse una serie de decisiones, por ejemplo:
 
 ### EL PAQUETE FLEXDASHBOARD
 
-[`flexdashboard`](https://pkgs.rstudio.com/flexdashboard/) permite generar cuadros de mandos en RMarkdown.
+`flexdashboard` permite generar cuadros de mandos en RMarkdown. Puede consultarse en el siguiente [ENLACE](https://pkgs.rstudio.com/flexdashboard/).
 
 ```{r, echo=FALSE, out.width="80%",out.height="80%"}
 knitr::include_graphics("images/FlexDB1.png")
@@ -596,16 +596,70 @@ Veremos como añadir otros componentes en nuestros dashboards, utilizando otros 
 
 ### EJERCICIO 1
 
-### EJERCICIO 2
+Revisar el archivo `EjemploDB.Rmd` en la carpeta **Ejemplos DB Shiny**.
+
+  * Inspeccionar la cabecera YAML.
+  * Comprobar cómo definir la disposición por filas/columnas del dashboard.
+  * Ver distintos elementos gráficos en el dashboard.
+  * El entorno `` `r ` ``, ¿dónde se ha utilizado?
+
 
 ### EL PAQUETE SHINY
 
-Shiny () permite crear aplicaciones web de forma fácil en RStudio.
-Se instala como cualquier otro paquete de R:
-install.packages("flexdashboard")
-Contiene ejemplos que pueden ser inspeccionados mediante la instrucción:
-runExample(“NOMBRE EJEMPLO")
+Shiny permite crear aplicaciones web de forma fácil en R (y Python).
+Incluye ejemplos que pueden ser inspeccionados mediante la instrucción:
+
+<pre style="color:blue;font-size:130%"> runExample(“NOMBRE EJEMPLO")</pre>
+
+Puede consultarse su documentación en el siguiente [ENLACE](https://shiny.posit.co/)
+
 Toda la aplicación estará contenida en un único archivo (app.R) con tres componentes:
-Una interfaz de usuario (UI)
-Una función servidor (server)
-Una llamada a la función shinyApp()
+
+  * Una interfaz de usuario (UI).
+  * Una función servidor (server).
+  * Una llamada a la función shinyApp().
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/Shiny1.png")
+```
+
+Se pueden añadir distintos tipos de *widgets* de control. Consultar el siguiente [ENLACE](https://shiny.posit.co/r/gallery/widgets/widget-gallery/) para ver una muestra de estos controles.
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/Shiny3.png")
+```
+
+### EJERCICIO 1
+
+Revisar el archivo `EjemploShiny.R` en la carpeta **Ejemplos DB Shiny**.
+
+  * Inspeccionar la estructura básica de una webApp de Shiny.
+  * ¿Qué elementos incluye el objeto ui?
+  * ¿Qué elementos incluye el objeto server?
+  * Ejecutar la aplicación y comprobar reactividad.
+  
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/Shiny2.png")
+```
+
+
+### INTEGRACIÓN DE FLEXDASHBOARD Y SHINY
+
+
+### EJERCICIO 1
+
+Revisar el archivo `EjemploDBShiny1.Rmd` en la carpeta **Ejemplos DB Shiny**.
+
+  * Inspeccionar la cabecera YAML.
+  * Localizar *widgets* para el control de la visualización.
+  * ¿Cuántos objetos reactivos podéis encontrar en el dashboard?
+  * Ejecutar el DB y comprobar su reactividad.
+  
+### EJERCICIO 2
+
+Revisar el archivo `EjemploDBShiny2.Rmd` en la carpeta **Ejemplos DB Shiny**.
+
+  * Inspeccionar la cabecera YAML.
+  * Localizar *widgets* para el control de la visualización.
+  * ¿Cuántos objetos reactivos podéis encontrar en el dashboard?
+  * Ejecutar el DB y comprobar su reactividad.
