@@ -19,7 +19,7 @@ library(lorem)
 ```
 
 ```{r message=FALSE}
-datos <- read_csv('world_mobility_with_covid_infection_count.csv')
+datos <- read_csv('../data/world_mobility_with_covid_infection_count.csv')
 datos$DATE_VAL <- lubridate::as_date(datos$DATE_VAL,format='%d-%m-%y')
 
 Vars <- paste0(c('RETAIL_AND_RECREATION','GROCERY_AND_PHARMACY','PARKS','TRANSIT_STATIONS','WORKPLACES','RESIDENTIAL'),'_PCT')
