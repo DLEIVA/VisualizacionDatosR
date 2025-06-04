@@ -315,7 +315,7 @@ layout(
 fig_x
 ```
 
-5)
+5) Combinamos los 3 gráficos: el diagrama dispersión en la zona central y los histogramas en los márgenes.
 
 ```{r plotlyex6d,exercise=TRUE,exercise.setup='plotlyex6c',exercise.blanks='___+',warning=FALSE,message=FALSE}
 subplot(
@@ -496,16 +496,116 @@ ggplotly(p)
 ```
 
 
-## Visualización de datos dinámica con FlexDashboard
-
-DFAAFD
+## Visualización de datos dinámica con FlexDashboard y Shiny
 
 ### ¿QUÉ ES UN DASHBOARD?
 
-FAFSA
+Un dashboard o cuadro de mandos es una disposición agrupada de gráficos, cajas de valores, indicadores de rendimiento y otros elementos que permiten la rápida visualización de datos para generar conocimiento.
+Son muy utilizados en los ámbitos industriales y de negocios pues posibilitan una fácil interpretación de la información en relación a los objetivos de las organizaciones.
 
-### UTILIDADES DE UN DASHBOARD
+### CARACTERÍSTICAS DE UN DASHBOARD
 
-DFAASF
+Algunas características que debe tener un dashboard:
+
+  * Contener información relevante para los objetivos marcados.
+  * Es eminentemente visual.
+  * Está orientado a la priorización de acciones.
+  * Es dinámico, actualizándose en tiempo real.
+  * Ventajas de su utilización:
+    - No requiere grandes conocimientos por parte de los usuarios.
+    - Permite añadir múltiples fuentes de información e indicadores.
+    - Posibilita el uso de múltiples usuarios.
+    - Son más eficientes que los informes tradicionales.
+    
+### DISEÑO DE UN DASHBOARD
+
+Al diseñar un dashboard deben tomarse una serie de decisiones, por ejemplo:
+
+  * Problema a solventar
+  * Objetivos priorizados.
+  * Indicadores de consecución de objetivos.
+  * Información a recoger/analizar.
+  * Visualizaciones más adecuadas.
+  * Elementos de interactividad.
+
+### EL PAQUETE FLEXDASHBOARD
+
+[`flexdashboard`](https://pkgs.rstudio.com/flexdashboard/) permite generar cuadros de mandos en RMarkdown.
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB1.png")
+```
+
+Podemos generar un nuevo dashboard mediante `File > New File > R Markdown`. Marcamos la opción `From Template`. Entre las plantillas, tenemos la opción `Flex Dashboard`.
+La plantilla creada presentará dos columnas y tres cajas reservadas a gráficos u otros componentes.
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB2.png")
+```
+
+La cabecera del documento Rmd nos permite configurar parámetros globales del dashboard. Su funcionamiento es como cualquier otra cabecera *YAML* de metadatos.
+
+```{r, echo=FALSE, out.width="90%",out.height="90%"}
+knitr::include_graphics("images/FlexDB3.png")
+```
+
+Por defecto se da una orientación por columnas:
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB4.png")
+knitr::include_graphics("images/FlexDB2.png")
+```
+
+También se puede dar una orientación por filas:
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB5.png")
+knitr::include_graphics("images/FlexDB6.png")
+```
+
+Podemos agrupar elementos en distintas páginas:
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB7.png")
+knitr::include_graphics("images/FlexDB8.png")
+```
+
+Podemos añadir componentes como cajas de valores:
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB9.png")
+knitr::include_graphics("images/FlexDB10.png")
+```
+
+También se pueden añadir indicadores métricos (gauges):
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB11.png")
+knitr::include_graphics("images/FlexDB12.png")
+```
+
+flexdashboard permite añadir cajas con texto para desarrollar un *storyboard*:
+
+```{r, echo=FALSE, out.width="80%",out.height="80%"}
+knitr::include_graphics("images/FlexDB13.png")
+knitr::include_graphics("images/FlexDB14.png")
+```
+
+Veremos como añadir otros componentes en nuestros dashboards, utilizando otros paquetes de R.
 
 
+### EJERCICIO 1
+
+### EJERCICIO 2
+
+### EL PAQUETE SHINY
+
+Shiny () permite crear aplicaciones web de forma fácil en RStudio.
+Se instala como cualquier otro paquete de R:
+install.packages("flexdashboard")
+Contiene ejemplos que pueden ser inspeccionados mediante la instrucción:
+runExample(“NOMBRE EJEMPLO")
+Toda la aplicación estará contenida en un único archivo (app.R) con tres componentes:
+Una interfaz de usuario (UI)
+Una función servidor (server)
+Una llamada a la función shinyApp()
