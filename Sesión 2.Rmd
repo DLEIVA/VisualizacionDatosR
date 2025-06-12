@@ -47,7 +47,6 @@ PANAS$EDUCATION_LEVEL <- car::recode(as.integer(PANAS$EDUCATION_LEVEL),paste(pas
 
 
 ```{r plotlyex1,exercise=TRUE,exercise.setup='explotlysetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
-library(plotly)
 plot_ly(x=___,
       y=___,
       color=___,
@@ -60,7 +59,6 @@ plot_ly(x=___,
 ```
 
 ```{r plotlyex1-solution}
-library(plotly)
 plot_ly(x=~PHQ9Sumatorio_pre,
       y=~BDI_TOTAL_PRE,
       color=~GENDER,
@@ -258,7 +256,6 @@ Para combinar distintos gráficos en una misma ventana podemos utilizar la funci
 1) Generamos un diagrama de dispersión con los datos de PHQ9 y BDI coloreados según niveles de CIVIL_STATUS:
 
 ```{r plotlyex6,exercise=TRUE,exercise.setup='explotlysetup',exercise.blanks='___+',warning=FALSE,message=FALSE}
-library(plotly)
 fig_xy <- plot_ly(
   data  = PANAS,
   x     = ~PHQ9Sumatorio_pre,
@@ -353,7 +350,6 @@ df <- read.csv(
 2) Utilizamos la función `plot_geo` que permite representar datos geolocalizados:
 
 ```{r plotlyex7b,exercise=TRUE,exercise.setup='plotlyex7',exercise.blanks='___+',warning=FALSE,message=FALSE}
-library(plotly)
 # Figura inicial
 fig <- df |>  
   plot_geo(lat = ~Lat, lon = ~Lon)
