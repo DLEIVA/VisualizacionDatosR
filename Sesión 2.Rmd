@@ -481,7 +481,8 @@ p <- ggplot(df, aes(x = phase, y = counts)) +
     ) +
   scale_color_manual(values = c("#00AFBB", "#E7B800", "#FC4E07"))+
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07")) + theme_bw()
-p+theme(axis.text.x = element_text(size = 20),
+
+p <- p + theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_text(size = 20),
         axis.title.x = element_text(size = 20),
         axis.title.y = element_text(size = 20),
