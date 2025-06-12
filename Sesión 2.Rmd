@@ -446,7 +446,7 @@ p <- ggplot(df, aes(x = phase, y = counts)) +
     ) +
   scale_color_manual(values = c("#00AFBB", "#E7B800", "#FC4E07"))+
   scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07")) + theme_bw()
-p+theme(axis.text.x = element_text(size = 20),
+p <- p+theme(axis.text.x = element_text(size = 20),
         axis.text.y = element_text(size = 20),
         axis.title.x = element_text(size = 20),
         axis.title.y = element_text(size = 20),
@@ -454,7 +454,7 @@ p+theme(axis.text.x = element_text(size = 20),
         legend.title=element_text(size= 20),
         legend.position.inside = c(.2, .8))
 
-ggplotly(___)
+ggplotly(p)
 ```
 
 ```{r plotlyex8-hint}
@@ -475,7 +475,9 @@ df <- datKendall |>
 
 p <- ggplot(df, aes(x = phase, y = counts)) +
   geom_bar(
-    aes(color = education, fill = education),
+    aes(color = education, fill = education,
+        text = paste("Phase:", phase,"<br>Education:", 
+                     education, "<br>Counts:", counts)),# Argumento text para evitar duplicar la etiqueta education
     stat = "identity", position = position_dodge(0.8),
     width = 0.7
     ) +
@@ -490,7 +492,8 @@ p <- p + theme(axis.text.x = element_text(size = 20),
         legend.title=element_text(size= 20),
         legend.position.inside = c(.2, .8))
 
-ggplotly(p)
+ggplotly(p, tooltip='text') # Permite que al mover el puntero la información que se muestra es la especificada en el argumento text del aes() en geom_bar() previo
+
 ```
 
 
