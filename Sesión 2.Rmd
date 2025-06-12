@@ -281,7 +281,7 @@ fig_y <- plot_ly(
   showlegend = FALSE,
   nbinsy     = 20,
   bingroup   = 1
-) %>%
+) |>
 layout(
   barmode = 'overlay',
   title   = 'Histograma de BDI',
@@ -303,7 +303,7 @@ fig_x <- plot_ly(
   showlegend = FALSE,
   nbinsy     = 20,
   bingroup   = 1
-) %>%
+) |>
 layout(
   barmode = 'overlay',
   title   = 'Histograma de PHQ9',
@@ -326,7 +326,7 @@ subplot(
   heights = c(0.2,0.8),
   shareX  = TRUE,
   shareY  = TRUE
-) %>%
+) |>
 layout(
   title  = 'Gráfico conjunto PHQ9 y BDI'
 )
@@ -392,7 +392,7 @@ fig
 ```{r plotlyex7e,exercise=TRUE,exercise.setup='plotlyex7d',exercise.blanks='___+',warning=FALSE,message=FALSE}
 # Títulos
 fig <- fig |>   
-  colorbar(title = "Precipitaciones Junio 2015") %>%   
+  colorbar(title = "Precipitaciones Junio 2015") |>   
   layout(   
     title = 'Precipitaciones en EEUU' 
     ) 
@@ -434,8 +434,8 @@ datKendall <- read_sav("data/ExCor3.sav")
 datKendall$education <- as_factor(datKendall$education)
 datKendall$phase <- as_factor(datKendall$phase)
 
-df <- datKendall %>%
-  group_by(education, phase) %>%
+df <- datKendall |>
+  group_by(education, phase) |>
   summarise(counts = n()) 
 
 p <- ggplot(df, aes(x = phase, y = counts)) +
@@ -469,8 +469,8 @@ datKendall <- read_sav("data/ExCor3.sav")
 datKendall$education <- as_factor(datKendall$education)
 datKendall$phase <- as_factor(datKendall$phase)
 
-df <- datKendall %>%
-  group_by(education, phase) %>%
+df <- datKendall |>
+  group_by(education, phase) |>
   summarise(counts = n()) 
 
 p <- ggplot(df, aes(x = phase, y = counts)) +
